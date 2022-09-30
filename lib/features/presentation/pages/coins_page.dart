@@ -101,15 +101,6 @@ class CoinsPage extends StatelessWidget {
                     )
                   : const SizedBox(),
             ),
-            Obx(() => _controller.hasNextPage.value == false
-                ? Container(
-                    padding: const EdgeInsets.only(top: 30, bottom: 40),
-                    color: Theme.of(context).selectedRowColor,
-                    child: const Center(
-                      child: Text('You have fetched all of the content'),
-                    ),
-                  )
-                : const SizedBox()),
           ],
         ),
       ),

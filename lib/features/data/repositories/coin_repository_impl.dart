@@ -1,6 +1,7 @@
 import 'package:coins_app/features/data/datasources/coin_remote_data_source.dart';
 import 'package:coins_app/features/data/models/coin_model.dart';
 import 'package:coins_app/core/error/failures.dart';
+import 'package:coins_app/features/domain/entities/coin_entity.dart';
 import 'package:coins_app/features/domain/repositories/coin_repository.dart';
 import 'package:dartz/dartz.dart';
 
@@ -9,7 +10,7 @@ class CoinRepositoryImpl implements CoinRepository {
 
   CoinRepositoryImpl({required this.dataSource});
   @override
-  Future<Either<Failure, List<CoinItemModel>>> getCoinsInformation(
+  Future<Either<Failure, List<CoinEntityItem>>> getCoinsInformation(
       int page, int limitItems, String filter) async {
     try {
       final response =
@@ -21,7 +22,7 @@ class CoinRepositoryImpl implements CoinRepository {
   }
 
   @override
-  Future<Either<Failure, List<CoinItemModel>>> getCoinsByName(
+  Future<Either<Failure, List<CoinEntityItem>>> getCoinsByName(
       String name) async {
     try {
       final response = await dataSource.getCoinsByName(name);

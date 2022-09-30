@@ -1,10 +1,10 @@
-import 'package:coins_app/features/data/models/coin_model.dart';
+import 'package:coins_app/features/domain/entities/coin_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CompareIconItemWidget extends StatelessWidget {
   const CompareIconItemWidget({Key? key, required this.coin}) : super(key: key);
-  final CoinItemModel coin;
+  final CoinEntityItem coin;
 
   @override
   Widget build(BuildContext context) {

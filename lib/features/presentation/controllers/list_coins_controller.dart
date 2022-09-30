@@ -1,6 +1,7 @@
 import 'package:coins_app/core/utility/local_storage.dart';
 import 'package:coins_app/dependency_injection/injector.dart';
 import 'package:coins_app/features/data/models/coin_model.dart';
+import 'package:coins_app/features/domain/entities/coin_entity.dart';
 import 'package:coins_app/features/domain/usecases/get_coins_by_name.dart';
 import 'package:coins_app/features/domain/usecases/get_coins_information.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -11,7 +12,7 @@ class ListCoinsController extends GetxController {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final getCoins = Injector.resolve<GetCoinsInformation>();
   final getCoinsByName = Injector.resolve<GetCoinsByName>();
-  RxList<CoinItemModel> coins = <CoinItemModel>[].obs;
+  RxList<CoinEntityItem> coins = <CoinEntityItem>[].obs;
   int page = 1;
   RxBool isFirtsLoading = true.obs;
   RxBool hasNextPage = true.obs;
@@ -20,8 +21,8 @@ class ListCoinsController extends GetxController {
   ScrollController scrollControllerCoinsPage = ScrollController();
   ScrollController scrollControllerComparePage = ScrollController();
   List<String> favorites = [];
-  RxList<CoinItemModel> coinsFavorites = <CoinItemModel>[].obs;
-  RxList<CoinItemModel> selectedCoins = <CoinItemModel>[].obs;
+  RxList<CoinEntityItem> coinsFavorites = <CoinEntityItem>[].obs;
+  RxList<CoinEntityItem> selectedCoins = <CoinEntityItem>[].obs;
   RxInt maxSelectedCoins = 2.obs;
   RxInt currentSelectedCoins = 0.obs;
   List<String> filterOptionsList = ["Desc. price", "Asc. price"];
@@ -125,13 +126,13 @@ class ListCoinsController extends GetxController {
     }
   }
 
-  Future<void> addNewFavoriteCoin(CoinItemModel item) async {
+  Future<void> addNewFavoriteCoin(CoinEntityItem item) async {
     int indexOfCoin = coins.indexOf(item);
     coins[indexOfCoin].isFavorite = true;
     await LocalStorage.addFavoriteCoin(item.id);
   }
 
-  Future<void> removeAFavoriteCoin(CoinItemModel item) async {
+  Future<void> removeAFavoriteCoin(CoinEntityItem item) async {
     int indexOfCrypto = coins.indexOf(item);
     coins[indexOfCrypto].isFavorite = false;
     await LocalStorage.removeFavoriteCoin(item.id);
@@ -140,7 +141,7 @@ class ListCoinsController extends GetxController {
 
   Future<void> getAllFavoriteCoins() async {
     favorites = await LocalStorage.fetchFavoritesCoins();
-    List<CoinItemModel> temp = [];
+    List<CoinEntityItem> temp = [];
     for (var element in favorites) {
       temp.add(coins.where((coin) => coin.id == element).first);
     }

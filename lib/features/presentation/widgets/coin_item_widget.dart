@@ -1,4 +1,4 @@
-import 'package:coins_app/features/data/models/coin_model.dart';
+import 'package:coins_app/features/domain/entities/coin_entity.dart';
 import 'package:flutter/material.dart';
 
 class CoinItemWidget extends StatelessWidget {
@@ -10,7 +10,7 @@ class CoinItemWidget extends StatelessWidget {
       required this.onTap,
       required this.onLongPress})
       : super(key: key);
-  final CoinItemModel coin;
+  final CoinEntityItem coin;
   final String pageFrom;
   final Function(bool) changeFavorite;
   final Function onTap;

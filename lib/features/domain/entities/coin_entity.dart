@@ -1,16 +1,13 @@
-class CoinEntity {
-  List<CoinEntityItem> coins;
+import 'package:equatable/equatable.dart';
 
-  CoinEntity(this.coins);
-}
-
-class CoinEntityItem {
+class CoinEntityItem extends Equatable {
   final String id;
   final String symbol;
   final String name;
-  final String image;
-  final int currentPrice;
-  bool? isFavorite;
+  late String image;
+  late double currentPrice;
+  bool isFavorite = false;
+  bool isSelected = false;
 
   CoinEntityItem(
       {required this.currentPrice,
@@ -18,5 +15,9 @@ class CoinEntityItem {
       required this.image,
       required this.name,
       required this.symbol,
-      this.isFavorite});
+      this.isFavorite = false,
+      this.isSelected = false});
+
+  @override
+  List<Object?> get props => [];
 }
