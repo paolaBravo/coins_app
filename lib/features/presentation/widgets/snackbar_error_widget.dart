@@ -21,13 +21,9 @@ class SnackbarErrorWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Error!",
-            style: Theme.of(context).textTheme.subtitle1,
-          ),
-          Text(
-            textError,
+            "Error: " + textError,
             style: Theme.of(context).textTheme.subtitle2,
-            maxLines: 2,
+            maxLines: 3,
             overflow: TextOverflow.ellipsis,
           ),
         ],
