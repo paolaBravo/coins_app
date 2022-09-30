@@ -52,10 +52,12 @@ class CoinRemoteDataSourceImpl implements CoinRemoteDataSource {
           "https://api.coingecko.com/api/v3/simple/price?ids=$ids&vs_currencies=usd");
       final responsePrices = await http.get(requestPathByPrice);
       Map<String, dynamic> map = json.decode(responsePrices.body);
+
       map.forEach((key, value) {
         for (var element in result) {
           if (element.id == key) {
-            element.currentPrice = double.parse(value["usd"].toString());
+            element.currentPrice = double.parse(
+                value["usd"] != null ? value["usd"].toString() : "0.0");
           }
         }
       });
