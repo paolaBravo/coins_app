@@ -1,8 +1,8 @@
 # coins_app
 
-A new Flutter project.
-
 ## Getting Started
+
+![](https://github.com/paolaBravo/coins_app/blob/main/assets/coins_app.gif)
 
 ## Developer mode:
 - Open the flutter file in terminal.
