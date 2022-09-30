@@ -11,7 +11,7 @@ class Router {
   static final routes = [
     GetPage(
       name: '/home',
-      page: () => HomePage(),
+      page: () => const HomePage(),
     ),
     GetPage(
       name: '/signUp',

@@ -1,5 +1,6 @@
 import 'package:coins_app/features/presentation/controllers/login_controller.dart';
 import 'package:coins_app/features/presentation/widgets/button_widget.dart';
+import 'package:coins_app/features/presentation/widgets/snackbar_error_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -32,6 +33,8 @@ class LoginPage extends StatelessWidget {
                 style: Theme.of(context).textTheme.caption,
                 controller: controller.passwordController,
                 obscureText: controller.hiddenPassword.value,
+                keyboardType: TextInputType.emailAddress,
+                autofillHints: const [AutofillHints.email],
                 decoration: InputDecoration(
                   suffixIcon: IconButton(
                     onPressed: () {
@@ -46,14 +49,23 @@ class LoginPage extends StatelessWidget {
             ),
             SizedBox(height: Get.height * 0.05),
             ButtonWidget(
-                text: "Login",
-                onTap: () async {
-                  await controller.logInWithEmailAndPassword();
-                  if (controller.loginError.value != "") {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text(controller.loginError.value)));
-                  }
-                }),
+              text: "Login",
+              onTap: () async {
+                await controller.logInWithEmailAndPassword();
+                if (controller.loginError.value != "") {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      behavior: SnackBarBehavior.floating,
+                      backgroundColor: Colors.transparent,
+                      elevation: 0,
+                      content: SnackbarErrorWidget(
+                        textError: controller.loginError.value,
+                      ),
+                    ),
+                  );
+                }
+              },
+            ),
           ],
         ),
       ),

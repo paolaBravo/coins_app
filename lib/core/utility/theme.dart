@@ -19,6 +19,15 @@ class Themes {
           fontSize: 16, fontWeight: FontWeight.w500, color: Colors.black),
       bodyText2: TextStyle(fontSize: 16, color: Colors.black),
       caption: TextStyle(fontSize: 16, color: Color(0xFF434343)),
+      subtitle1: TextStyle(
+        fontSize: 16,
+        fontWeight: FontWeight.w500,
+        color: Color(0xFFFFFFFF),
+      ),
+      subtitle2: TextStyle(
+        fontSize: 15,
+        color: Color(0xFFFFFFFF),
+      ),
     ),
     inputDecorationTheme: InputDecorationTheme(
       fillColor: const Color(0xFFFCFBFB),

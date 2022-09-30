@@ -1,5 +1,6 @@
 import 'package:coins_app/features/presentation/controllers/sign_up_controller.dart';
 import 'package:coins_app/features/presentation/widgets/button_widget.dart';
+import 'package:coins_app/features/presentation/widgets/snackbar_error_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -32,6 +33,8 @@ class SignUpPage extends StatelessWidget {
                 style: Theme.of(context).textTheme.caption,
                 controller: controller.passwordController,
                 obscureText: controller.hiddenPassword.value,
+                keyboardType: TextInputType.emailAddress,
+                autofillHints: const [AutofillHints.email],
                 decoration: InputDecoration(
                   suffixIcon: IconButton(
                     onPressed: () {
@@ -51,7 +54,15 @@ class SignUpPage extends StatelessWidget {
                   await controller.register();
                   if (controller.signUpError.value != "") {
                     ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text(controller.signUpError.value)));
+                      SnackBar(
+                        behavior: SnackBarBehavior.floating,
+                        backgroundColor: Colors.transparent,
+                        elevation: 0,
+                        content: SnackbarErrorWidget(
+                          textError: controller.signUpError.value,
+                        ),
+                      ),
+                    );
                   }
                 }),
           ],
