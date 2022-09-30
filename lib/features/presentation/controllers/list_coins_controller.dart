@@ -116,7 +116,8 @@ class ListCoinsController extends GetxController {
         isFirtsLoading.value == false &&
         isLoadingMore.value == false &&
         (scrollControllerCoinsPage.position.extentAfter < 300 ||
-            scrollControllerComparePage.position.extentAfter < 300)) {
+            scrollControllerComparePage.position.extentAfter < 300) &&
+        search.value == "") {
       isLoadingMore.value = true;
       page += 1;
       await getAllCoins(page, limitItems, filterOption.value);

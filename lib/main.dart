@@ -3,11 +3,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart' hide Router;
 import 'package:coins_app/core/utility/theme.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:coins_app/core/utility/router.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   await Firebase.initializeApp();
   Injector.setup();
   String initialPage() {
