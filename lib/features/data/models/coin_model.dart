@@ -28,11 +28,11 @@ class CoinItemModel extends CoinEntityItem {
   }
   Map<String, dynamic> toJson() {
     return {
-      'id': [id],
-      'name': [name],
-      'symbol': [symbol],
-      'image': [image],
-      'current_price': [currentPrice].toString(),
+      'id': id,
+      'name': name,
+      'symbol': symbol,
+      'image': image,
+      'current_price': currentPrice,
     };
   }
 }
