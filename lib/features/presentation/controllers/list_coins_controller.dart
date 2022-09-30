@@ -1,6 +1,5 @@
 import 'package:coins_app/core/utility/local_storage.dart';
 import 'package:coins_app/dependency_injection/injector.dart';
-import 'package:coins_app/features/data/models/coin_model.dart';
 import 'package:coins_app/features/domain/entities/coin_entity.dart';
 import 'package:coins_app/features/domain/usecases/get_coins_by_name.dart';
 import 'package:coins_app/features/domain/usecases/get_coins_information.dart';
@@ -30,6 +29,7 @@ class ListCoinsController extends GetxController {
   var filterOption = "".obs;
   final searchController = TextEditingController();
   RxString search = "".obs;
+  RxBool isLoading = false.obs;
 
   @override
   Future<void> onInit() async {
@@ -50,10 +50,11 @@ class ListCoinsController extends GetxController {
 
   getAllCoins(int page, int limitItems, String filter) async {
     favorites = await LocalStorage.fetchFavoritesCoins();
+    isLoading.value = true;
     if (searchController.text == "") {
       var response = await getCoins.call(
           Params(limit: limitItems, page: page, filter: filterOption.value));
-      response.fold((l) => null, (r) {
+      response.fold((l) => isLoading.value = false, (r) {
         if (r.isNotEmpty) {
           for (var coin in r) {
             favorites.contains(coin.id) == true
@@ -65,10 +66,11 @@ class ListCoinsController extends GetxController {
           hasNextPage.value = false;
         }
       });
+      isLoading.value = false;
     } else {
       var response =
           await getCoinsByName.call(Param(name: searchController.text));
-      response.fold((l) => null, (r) {
+      response.fold((l) => isLoading.value = false, (r) {
         if (r.isNotEmpty) {
           for (var coin in r) {
             favorites.contains(coin.id) == true
@@ -80,6 +82,7 @@ class ListCoinsController extends GetxController {
           hasNextPage.value = false;
         }
       });
+      isLoading.value = false;
     }
   }
 

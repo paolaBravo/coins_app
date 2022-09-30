@@ -139,9 +139,30 @@ class CoinsPage extends StatelessWidget {
             ),
           );
         } else {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
+          return _controller.isLoading.value
+              ? const Center(
+                  child: CircularProgressIndicator(),
+                )
+              : Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SizedBox(
+                        height: Get.height * 0.05,
+                      ),
+                      Image(
+                          image: const AssetImage("assets/logo.png"),
+                          width: Get.width * 0.4),
+                      SizedBox(
+                        height: Get.height * 0.05,
+                      ),
+                      const Text(
+                        "We don't have any coins for you right now, please try again later.",
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  ),
+                );
         }
       },
     );

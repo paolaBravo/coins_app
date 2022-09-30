@@ -1,5 +1,4 @@
 import 'package:coins_app/features/data/datasources/coin_remote_data_source.dart';
-import 'package:coins_app/features/data/models/coin_model.dart';
 import 'package:coins_app/core/error/failures.dart';
 import 'package:coins_app/features/domain/entities/coin_entity.dart';
 import 'package:coins_app/features/domain/repositories/coin_repository.dart';
