@@ -13,6 +13,8 @@ class CoinItemModel extends CoinEntityItem {
           image: image,
           name: name,
           symbol: symbol,
+          isFavorite: false,
+          isSelected: false,
         );
 
   factory CoinItemModel.fromJson(Map<String, dynamic> json) {

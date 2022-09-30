@@ -6,8 +6,8 @@ class CoinEntityItem extends Equatable {
   final String name;
   late String image;
   late double currentPrice;
-  bool isFavorite = false;
-  bool isSelected = false;
+  bool isFavorite;
+  bool isSelected;
 
   CoinEntityItem(
       {required this.currentPrice,
@@ -15,8 +15,8 @@ class CoinEntityItem extends Equatable {
       required this.image,
       required this.name,
       required this.symbol,
-      this.isFavorite = false,
-      this.isSelected = false});
+      required this.isFavorite,
+      required this.isSelected});
 
   @override
   List<Object?> get props => [];

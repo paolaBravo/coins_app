@@ -127,14 +127,21 @@ class ListCoinsController extends GetxController {
   }
 
   Future<void> addNewFavoriteCoin(CoinEntityItem item) async {
-    int indexOfCoin = coins.indexOf(item);
-    coins[indexOfCoin].isFavorite = true;
+    for (var element in coins) {
+      if (element.id == item.id) {
+        element.isFavorite = true;
+      }
+    }
+
     await LocalStorage.addFavoriteCoin(item.id);
   }
 
   Future<void> removeAFavoriteCoin(CoinEntityItem item) async {
-    int indexOfCrypto = coins.indexOf(item);
-    coins[indexOfCrypto].isFavorite = false;
+    for (var element in coins) {
+      if (element.id == item.id) {
+        element.isFavorite = false;
+      }
+    }
     await LocalStorage.removeFavoriteCoin(item.id);
     getAllFavoriteCoins();
   }

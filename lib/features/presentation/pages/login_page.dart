@@ -24,6 +24,8 @@ class LoginPage extends StatelessWidget {
             TextFormField(
               controller: controller.emailController,
               style: Theme.of(context).textTheme.caption,
+              keyboardType: TextInputType.emailAddress,
+              autofillHints: const [AutofillHints.email],
             ),
             SizedBox(height: Get.height * 0.02),
             const Text("Password"),
@@ -33,8 +35,6 @@ class LoginPage extends StatelessWidget {
                 style: Theme.of(context).textTheme.caption,
                 controller: controller.passwordController,
                 obscureText: controller.hiddenPassword.value,
-                keyboardType: TextInputType.emailAddress,
-                autofillHints: const [AutofillHints.email],
                 decoration: InputDecoration(
                   suffixIcon: IconButton(
                     onPressed: () {

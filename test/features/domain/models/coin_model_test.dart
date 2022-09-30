@@ -50,7 +50,6 @@ void main() {
         "image": "test_image",
         "current_price": 2.5,
       };
-
       expect(result, expectedData);
     });
   });
